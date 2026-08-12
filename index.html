@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO -->
+    <title>ForgeWell — Premium Fitness, Bhopal</title>
+    <meta name="description" content="Bhopal's most elite training facility. World-class equipment, expert coaches, and a community that pushes you beyond limits. Join ForgeWell today." />
+    <meta name="keywords" content="gym, fitness, Bhopal, personal training, weight training, group classes" />
+    <meta name="author" content="ForgeWell" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="ForgeWell — Premium Fitness, Bhopal" />
+    <meta property="og:description" content="Bhopal's most elite training facility. World-class equipment, expert coaches." />
+    <meta property="og:type" content="website" />
+
+    <!-- Fonts: Space Grotesk (display headings), Outfit (body), Space Mono (eyebrow) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+      ══════════════════════════════════════════════════
+      PRE-PAINT THEME SCRIPT (Image Palette Defaults)
+      Runs synchronously BEFORE React bundle loads.
+      Reads saved theme from localStorage, converts hex
+      to space-separated RGB, and sets CSS custom properties
+      on :root — so there is NO flash of default colors.
+      ══════════════════════════════════════════════════
+    -->
+    <script>
+      (function() {
+        var STORAGE_KEY = 'forgewell_overrides_v3';
+        var CSS_VAR_MAP = {
+          accent:      '--accent',
+          accentHover: '--accent-hover',
+          shadow:      '--shadow',
+          bgPrimary:   '--bg-primary',
+          bgSecondary: '--bg-secondary',
+          bgCard:      '--bg-card',
+          inkPrimary:  '--ink-primary',
+          inkSecondary:'--ink-secondary',
+          border:      '--border'
+        };
+
+        function hexToRgb(hex) {
+          if (!hex) return null;
+          var h = hex.replace('#', '');
+          if (h.length === 3) h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+          var num = parseInt(h, 16);
+          return ((num >> 16) & 255) + ' ' + ((num >> 8) & 255) + ' ' + (num & 255);
+        }
+
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            var overrides = JSON.parse(raw);
+            var theme = overrides.theme;
+            if (theme) {
+              var root = document.documentElement;
+              for (var key in theme) {
+                if (theme.hasOwnProperty(key) && CSS_VAR_MAP[key]) {
+                  var rgb = hexToRgb(theme[key]);
+                  if (rgb) root.style.setProperty(CSS_VAR_MAP[key], rgb);
+                }
+              }
+            }
+          }
+        } catch (e) {
+          // Silently fail — defaults in CSS will apply
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
