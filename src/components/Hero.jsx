@@ -12,7 +12,7 @@ export default function Hero({ onOpenCustomizer }) {
   return (
     <section
       id="hero"
-      className="relative min-h-[85vh] flex flex-col justify-center pt-28 pb-20 lg:py-32 bg-bg-primary overflow-hidden"
+      className="relative min-h-[85vh] flex flex-col justify-center pt-28 pb-20 lg:py-32 bg-bg-primary"
     >
       {/* Top Right Customize Toolbar Button */}
       <SectionToolbar
@@ -21,9 +21,11 @@ export default function Hero({ onOpenCustomizer }) {
         label="Hero / Navbar / Theme"
       />
 
-      {/* Background Decorative Blur & Accent Shapes */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#75BDE0]/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#A9D09E]/20 rounded-full blur-3xl pointer-events-none" />
+      {/* Background Decorative Blur & Accent Shapes — own clipping wrapper */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#75BDE0]/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#A9D09E]/20 rounded-full blur-3xl" />
+      </div>
 
       {/* Main Content Container */}
       <div className="relative z-10 max-w-content mx-auto px-4 sm:px-8 lg:px-12 w-full">
@@ -33,8 +35,8 @@ export default function Hero({ onOpenCustomizer }) {
           <div className="lg:col-span-7 pb-11 space-y-6 sm:space-y-8">
             {/* Status Badge */}
             <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#F6E2BC]/70 border border-[#3B7097]/20 shadow-2xs">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#3B7097] animate-pulse" />
-              <span className="font-mono text-xs font-bold tracking-wider text-[#3B7097] uppercase">
+              <span className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
+              <span className="font-mono text-xs font-bold tracking-wider text-bg-accent uppercase">
                 {data.eyebrow || 'BHOPAL\'S STRENGTH & CONDITIONING STUDIO'}
               </span>
             </div>
@@ -42,7 +44,7 @@ export default function Hero({ onOpenCustomizer }) {
             {/* Headline */}
             <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-ink-primary tracking-tight leading-[1.08]">
               <span className="block mb-1">{data.headlineLine1 || 'FORGE YOUR'}</span>
-              <span className="inline-block text-[#3B7097] underline decoration-[#75BDE0]/60 decoration-wavy decoration-2 underline-offset-8">
+              <span className="inline-block text-bg-accent underline decoration-[#75BDE0]/60 decoration-wavy decoration-2 underline-offset-8">
                 {data.headlineLine2 || 'STRONGEST SELF'}
               </span>
             </h1>
@@ -56,14 +58,14 @@ export default function Hero({ onOpenCustomizer }) {
             <div className="flex flex-wrap gap-4 pt-2">
               <a
                 href={data.ctaPrimary?.link || '#pricing'}
-                className="inline-flex items-center gap-3 px-7 py-3.5 sm:px-8 sm:py-4 bg-[#3B7097] text-white font-body font-bold text-sm sm:text-base rounded-2xl hover:bg-[#2C5677] transition-all duration-200 shadow-md shadow-[#3B7097]/20 hover:shadow-lg hover:-translate-y-0.5"
+                className="inline-flex items-center gap-3 px-7 py-3.5 sm:px-8 sm:py-4 bg-accent text-white font-body font-bold text-sm sm:text-base rounded-2xl hover:bg-accent-hover transition-all duration-200 shadow-md shadow-accent/20 hover:shadow-lg hover:-translate-y-0.5"
               >
                 {data.ctaPrimary?.text || 'Start Your Journey'}
                 <ArrowRight size={18} />
               </a>
               <a
                 href={data.ctaSecondary?.link || '#gallery'}
-                className="inline-flex items-center gap-2 px-7 py-3.5 sm:px-8 sm:py-4 bg-[#F6E2BC]/60 border border-[#3B7097]/20 text-[#3B7097] font-body font-bold text-sm sm:text-base rounded-2xl hover:bg-[#F6E2BC] transition-all duration-200 shadow-2xs hover:shadow-xs"
+                className="inline-flex items-center gap-2 px-7 py-3.5 sm:px-8 sm:py-4 bg-[#F6E2BC]/60 border border-[#3B7097]/20 text-accent font-body font-bold text-sm sm:text-base rounded-2xl hover:bg-[#F6E2BC] transition-all duration-200 shadow-2xs hover:shadow-xs"
               >
                 {data.ctaSecondary?.text || 'Take a Tour'}
               </a>
@@ -72,19 +74,19 @@ export default function Hero({ onOpenCustomizer }) {
             {/* Feature Pills Tag Row */}
             <div className="flex flex-wrap items-center gap-5 pt-2 text-xs font-body font-bold text-ink-secondary">
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 rounded-full bg-[#A9D09E]/50 text-[#2C5677] flex items-center justify-center">
+                <div className="w-5 h-5 rounded-full bg-[#A9D09E]/50 text-accent-hover flex items-center justify-center">
                   <Check size={12} />
                 </div>
                 <span>Certified Coaches</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 rounded-full bg-[#A9D09E]/50 text-[#2C5677] flex items-center justify-center">
+                <div className="w-5 h-5 rounded-full bg-[#A9D09E]/50 text-accent-hover flex items-center justify-center">
                   <Check size={12} />
                 </div>
                 <span>State-of-the-Art Equipment</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 rounded-full bg-[#A9D09E]/50 text-[#2C5677] flex items-center justify-center">
+                <div className="w-5 h-5 rounded-full bg-[#A9D09E]/50 text-accent-hover flex items-center justify-center">
                   <Check size={12} />
                 </div>
                 <span>Recovery Lounge</span>
@@ -115,7 +117,7 @@ export default function Hero({ onOpenCustomizer }) {
               <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center divide-x divide-border/60">
                 {data.stats?.map((stat, i) => (
                   <div key={i} className="px-1 sm:px-2">
-                    <div className="font-display font-extrabold text-xl sm:text-3xl text-[#3B7097]">
+                    <div className="font-display font-extrabold text-xl sm:text-3xl text-accent">
                       {stat.value}
                     </div>
                     <div className="font-body text-[10px] sm:text-[11px] font-bold text-ink-secondary uppercase tracking-wider mt-0.5">
@@ -128,7 +130,7 @@ export default function Hero({ onOpenCustomizer }) {
 
             {/* Floating Rating Badge */}
             <div className="absolute -top-4 -right-2 sm:-right-4 bg-white rounded-2xl p-3 shadow-lg border border-border flex items-center gap-2.5 z-10">
-              <div className="w-9 h-9 rounded-xl bg-[#F6E2BC] text-[#3B7097] flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-[#F6E2BC] text-accent flex items-center justify-center">
                 <Star size={20} />
               </div>
               <div>

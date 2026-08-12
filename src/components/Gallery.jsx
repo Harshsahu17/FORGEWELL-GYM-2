@@ -22,20 +22,25 @@ export default function Gallery({ onOpenCustomizer }) {
   const closeLightbox = useCallback(() => {
     dialogRef.current?.close();
   }, []);
-
+  
   // Close on click outside the image
   const handleDialogClick = useCallback((e) => {
     if (e.target === dialogRef.current) {
       closeLightbox();
     }
   }, [closeLightbox]);
-
+  
   return (
     <section id="gallery" className="relative py-28 lg:py-36 bg-bg-primary">
+      {/* Sticky Section Toolbar (Bottom Right Corner) */}
+      <SectionToolbar
+        sectionKey="gallery"
+        onCustomize={() => onOpenCustomizer('gallery')}
+      />
       <div className="max-w-content mx-auto px-6 sm:px-8 lg:px-12">
         {/* Header */}
         <div ref={headerRef} className="reveal text-center max-w-3xl mx-auto mb-20">
-          <span className="inline-block font-mono text-xs font-bold tracking-[0.25em] text-[#3B7097] mb-4 uppercase">
+          <span className="inline-block font-mono text-xs font-bold tracking-[0.25em] text-accent mb-4 uppercase">
             {data.eyebrow}
           </span>
           <h2 className="font-display font-bold text-section text-ink-primary mb-6">
@@ -93,11 +98,6 @@ export default function Gallery({ onOpenCustomizer }) {
         </div>
       </dialog>
 
-      {/* Sticky Section Toolbar (Bottom Right Corner) */}
-      <SectionToolbar
-        sectionKey="gallery"
-        onCustomize={() => onOpenCustomizer('gallery')}
-      />
     </section>
   );
 }

@@ -6,13 +6,18 @@ export default function HowItWorks({ onOpenCustomizer }) {
   const [data] = useManagedSection('howItWorks');
   const headerRef = useScrollReveal();
   const stepsRef = useScrollReveal({ threshold: 0.1 });
-
+  
   return (
     <section id="how-it-works" className="relative py-28 lg:py-36 bg-bg-secondary border-y border-border/60">
+      {/* Sticky Section Toolbar (Bottom Right Corner) */}
+      <SectionToolbar
+        sectionKey="howItWorks"
+        onCustomize={() => onOpenCustomizer('howItWorks')}
+      />
       <div className="max-w-content mx-auto px-6 sm:px-8 lg:px-12">
         {/* Header */}
         <div ref={headerRef} className="reveal text-center max-w-3xl mx-auto mb-20">
-          <span className="inline-block font-mono text-xs font-bold tracking-[0.25em] text-[#3B7097] mb-4 uppercase">
+          <span className="inline-block font-mono text-xs font-bold tracking-[0.25em] text-accent mb-4 uppercase">
             {data.eyebrow}
           </span>
           <h2 className="font-display font-bold text-section text-ink-primary mb-6">
@@ -27,7 +32,7 @@ export default function HowItWorks({ onOpenCustomizer }) {
         <div ref={stepsRef} className="reveal relative">
           {/* Desktop connector line */}
           <div className="hidden lg:block absolute top-[3.25rem] left-[15%] right-[15%] h-[2px] bg-border/80">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#3B7097] via-[#3B7097]/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-accent via-accent/50 to-transparent" />
           </div>
 
           <div className="grid lg:grid-cols-4 gap-8 lg:gap-6">
@@ -42,8 +47,8 @@ export default function HowItWorks({ onOpenCustomizer }) {
                 )}
 
                 {/* Number badge */}
-                <div className="relative z-10 w-16 h-16 flex-shrink-0 rounded-2xl bg-bg-card border-2 border-[#3B7097] flex items-center justify-center lg:mx-auto lg:mb-8 shadow-md">
-                  <span className="font-mono text-lg font-bold text-[#3B7097]">
+                <div className="relative z-10 w-16 h-16 flex-shrink-0 rounded-2xl bg-bg-card border-2 border-accent flex items-center justify-center lg:mx-auto lg:mb-8 shadow-md">
+                  <span className="font-mono text-lg font-bold text-accent">
                     {step.number}
                   </span>
                 </div>
@@ -63,11 +68,6 @@ export default function HowItWorks({ onOpenCustomizer }) {
         </div>
       </div>
 
-      {/* Sticky Section Toolbar (Bottom Right Corner) */}
-      <SectionToolbar
-        sectionKey="howItWorks"
-        onCustomize={() => onOpenCustomizer('howItWorks')}
-      />
     </section>
   );
 }

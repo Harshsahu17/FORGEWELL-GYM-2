@@ -10,6 +10,11 @@ export default function About({ onOpenCustomizer }) {
 
   return (
     <section id="about" className="relative py-28 lg:py-36 bg-bg-secondary border-y border-border/60">
+      {/* Sticky Section Toolbar (Bottom Right Corner) */}
+      <SectionToolbar
+        sectionKey="about"
+        onCustomize={() => onOpenCustomizer('about')}
+      />
       <div className="max-w-content mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Image */}
@@ -22,12 +27,12 @@ export default function About({ onOpenCustomizer }) {
               />
             </div>
             {/* Decorative subtle accent frame */}
-            <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-[#3B7097]/25 rounded-3xl -z-10 hidden sm:block" />
+            <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-accent/25 rounded-3xl -z-10 hidden sm:block" />
           </div>
 
           {/* Content */}
           <div ref={revealRef} className="reveal">
-            <span className="inline-block font-mono text-xs font-bold tracking-[0.25em] text-[#3B7097] mb-4 uppercase">
+            <span className="inline-block font-mono text-xs font-bold tracking-[0.25em] text-accent mb-4 uppercase">
               {data.eyebrow}
             </span>
 
@@ -43,7 +48,7 @@ export default function About({ onOpenCustomizer }) {
             <div className="grid grid-cols-3 gap-4 sm:gap-6 mb-10">
               {data.stats?.map((stat, i) => (
                 <div key={i} className="p-4 sm:p-5 rounded-2xl bg-bg-card border border-border shadow-xs text-center lg:text-left">
-                  <div className="font-display font-extrabold text-2xl sm:text-3xl text-[#3B7097] mb-1">
+                  <div className="font-display font-extrabold text-2xl sm:text-3xl text-accent mb-1">
                     {stat.value}
                   </div>
                   <div className="font-body text-xs font-semibold text-ink-secondary tracking-wide uppercase">
@@ -56,7 +61,7 @@ export default function About({ onOpenCustomizer }) {
             {/* CTA */}
             <a
               href={data.ctaLink}
-              className="inline-flex items-center gap-3 font-body font-bold text-base text-[#3B7097] hover:text-[#2C5677] transition-colors group py-2"
+              className="inline-flex items-center gap-3 font-body font-bold text-base text-accent hover:text-accent-hover transition-colors group py-2"
             >
               {data.ctaText}
               <ArrowRight size={20} className="group-hover:translate-x-1.5 transition-transform" />
@@ -65,11 +70,6 @@ export default function About({ onOpenCustomizer }) {
         </div>
       </div>
 
-      {/* Sticky Section Toolbar (Bottom Right Corner) */}
-      <SectionToolbar
-        sectionKey="about"
-        onCustomize={() => onOpenCustomizer('about')}
-      />
     </section>
   );
 }
