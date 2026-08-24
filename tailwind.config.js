@@ -21,9 +21,9 @@ export default {
         border: 'rgb(var(--border) / <alpha-value>)',
       },
       fontFamily: {
-        display: ['"Space Grotesk"', 'sans-serif'],
-        body:    ['"Outfit"', 'sans-serif'],
-        mono:    ['"Space Mono"', 'monospace'],
+        display: ['"Bricolage Grotesque"', 'sans-serif'],
+        body:    ['"DM Sans"', 'sans-serif'],
+        mono:    ['"IBM Plex Mono"', 'monospace'],
       },
       fontSize: {
         'hero': ['clamp(3.2rem, 7vw, 6.5rem)', { lineHeight: '1.08', letterSpacing: '-0.03em', fontWeight: '800' }],

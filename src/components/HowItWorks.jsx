@@ -1,22 +1,16 @@
-import useManagedSection from '../utils/useManagedSection';
+import defaultData from '../data/forgewellData.json';
 import useScrollReveal from '../utils/useScrollReveal';
-import SectionToolbar from './SectionToolbar';
 
-export default function HowItWorks({ onOpenCustomizer }) {
-  const [data] = useManagedSection('howItWorks');
+export default function HowItWorks() {
+  const data = defaultData.howItWorks;
   const headerRef = useScrollReveal();
   const stepsRef = useScrollReveal({ threshold: 0.1 });
   
   return (
-    <section id="how-it-works" className="relative py-28 lg:py-36 bg-bg-secondary border-y border-border/60">
-      {/* Sticky Section Toolbar (Bottom Right Corner) */}
-      <SectionToolbar
-        sectionKey="howItWorks"
-        onCustomize={() => onOpenCustomizer('howItWorks')}
-      />
-      <div className="max-w-content mx-auto px-6 sm:px-8 lg:px-12">
+    <section id="how-it-works" className="relative py-12 lg:py-14 bg-bg-secondary border-y border-border/60">
+      <div className="max-w-content mx-auto px-4 sm:px-8 lg:px-12">
         {/* Header */}
-        <div ref={headerRef} className="reveal text-center max-w-3xl mx-auto mb-20">
+        <div ref={headerRef} className="reveal text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span className="inline-block font-mono text-xs font-bold tracking-[0.25em] text-accent mb-4 uppercase">
             {data.eyebrow}
           </span>

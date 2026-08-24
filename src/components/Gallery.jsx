@@ -1,11 +1,10 @@
 import { useRef, useCallback } from 'react';
-import useManagedSection from '../utils/useManagedSection';
+import defaultData from '../data/forgewellData.json';
 import useScrollReveal from '../utils/useScrollReveal';
-import SectionToolbar from './SectionToolbar';
 import { X } from './icons';
 
-export default function Gallery({ onOpenCustomizer }) {
-  const [data] = useManagedSection('gallery');
+export default function Gallery() {
+  const data = defaultData.gallery;
   const headerRef = useScrollReveal();
   const gridRef = useScrollReveal({ threshold: 0.05 });
   const dialogRef = useRef(null);
@@ -31,15 +30,10 @@ export default function Gallery({ onOpenCustomizer }) {
   }, [closeLightbox]);
   
   return (
-    <section id="gallery" className="relative py-28 lg:py-36 bg-bg-primary">
-      {/* Sticky Section Toolbar (Bottom Right Corner) */}
-      <SectionToolbar
-        sectionKey="gallery"
-        onCustomize={() => onOpenCustomizer('gallery')}
-      />
-      <div className="max-w-content mx-auto px-6 sm:px-8 lg:px-12">
+    <section id="gallery" className="relative py-12 lg:py-14 bg-bg-primary">
+      <div className="max-w-content mx-auto px-4 sm:px-8 lg:px-12">
         {/* Header */}
-        <div ref={headerRef} className="reveal text-center max-w-3xl mx-auto mb-20">
+        <div ref={headerRef} className="reveal text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span className="inline-block font-mono text-xs font-bold tracking-[0.25em] text-accent mb-4 uppercase">
             {data.eyebrow}
           </span>
@@ -52,20 +46,20 @@ export default function Gallery({ onOpenCustomizer }) {
         </div>
 
         {/* Image Grid */}
-        <div ref={gridRef} className="reveal grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+        <div ref={gridRef} className="reveal grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 lg:gap-2">
           {data.images?.map((img, i) => (
             <button
               key={i}
               onClick={() => openLightbox(img.src, img.alt)}
-              className={`group relative overflow-hidden rounded-3xl cursor-pointer shadow-xs hover:shadow-2xl border border-border/80 transition-all duration-300 stagger-${i + 1} ${
+              className={`group relative min-h-0 overflow-hidden rounded-3xl cursor-pointer shadow-xs hover:shadow-2xl border border-border/80 transition-all duration-300 stagger-${i + 1} ${
                 i === 0 ? 'md:col-span-2 md:row-span-2' : ''
               }`}
             >
-              <div className={`${i === 0 ? 'aspect-square md:aspect-auto md:h-full' : 'aspect-[4/3]'}`}>
+              <div className={`${i === 0 ? 'aspect-square md:aspect-auto md:h-full' : 'aspect-[4/3] md:aspect-auto md:h-full'}`}>
                 <img
                   src={img.src}
                   alt={img.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="block w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>
@@ -94,7 +88,7 @@ export default function Gallery({ onOpenCustomizer }) {
           >
             <X size={30} />
           </button>
-          <img ref={imgRef} src="" alt="" />
+          <img ref={imgRef} src="/gallery-1.jpg" alt="Expanded gallery view" />
         </div>
       </dialog>
 

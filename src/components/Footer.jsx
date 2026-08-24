@@ -1,16 +1,16 @@
-import useManagedSection from '../utils/useManagedSection';
+import defaultData from '../data/forgewellData.json';
 import useScrollReveal from '../utils/useScrollReveal';
 import { Instagram, Facebook, Twitter, Youtube, Phone, Mail, MapPin, Clock } from './icons';
 
 const SOCIAL_ICONS = { Instagram, Facebook, Twitter, Youtube };
 
 export default function Footer() {
-  const [data] = useManagedSection('footer');
+  const data = defaultData.footer;
   const ref = useScrollReveal({ threshold: 0.05 });
 
   return (
     <footer id="footer" className="relative bg-bg-primary border-t border-border">
-      <div className="max-w-content mx-auto px-6 sm:px-8 lg:px-12 py-20 lg:py-24">
+      <div className="max-w-content mx-auto px-4 sm:px-8 lg:px-12 py-6 lg:py-6">
         <div ref={ref} className="reveal grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10">
           {/* Brand Column */}
           <div className="lg:col-span-1">
@@ -118,7 +118,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-border/80 bg-bg-secondary/60">
-        <div className="max-w-content mx-auto px-6 sm:px-8 lg:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-content mx-auto px-4 sm:px-8 lg:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <span className="font-body text-xs font-medium text-ink-secondary">
             {data.copyright}
           </span>

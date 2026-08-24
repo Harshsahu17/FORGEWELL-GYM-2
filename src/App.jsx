@@ -1,8 +1,4 @@
-import { useState, useEffect } from 'react';
-import { applyTheme } from './utils/theme';
-import { getSection } from './utils/dataManager';
-import defaultData from './data/forgewellData.json';
-
+import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -10,50 +6,43 @@ import Services from './components/Services';
 import Pricing from './components/Pricing';
 import Gallery from './components/Gallery';
 import HowItWorks from './components/HowItWorks';
+import Contact from './components/Contact';
+import JoinFormModal from './components/JoinFormModal';
 import Footer from './components/Footer';
-import Customizer from './components/Customizer';
 
 export default function App() {
-  const [activeCustomizer, setActiveCustomizer] = useState(null);
+  const [joinFormOpen, setJoinFormOpen] = useState(false);
+  const [selectedMembership, setSelectedMembership] = useState('');
 
-  // Apply saved theme on mount
-  useEffect(() => {
-    const savedTheme = getSection('theme', defaultData.theme);
-    applyTheme(savedTheme);
-  }, []);
-
-  const openCustomizer = (sectionKey) => {
-    setActiveCustomizer(sectionKey);
+  const openJoinForm = (membership = '') => {
+    setSelectedMembership(membership);
+    setJoinFormOpen(true);
   };
 
-  const closeCustomizer = () => {
-    setActiveCustomizer(null);
+  const closeJoinForm = () => {
+    setJoinFormOpen(false);
+    setSelectedMembership('');
   };
 
   return (
     <div className="min-h-screen bg-bg-primary">
-      {/* 
-        App Wrapper: Shrinks on desktop when Customizer is open so the drawer 
-        does not overlap site content!
-      */}
-      <div className={`app-wrapper ${activeCustomizer ? 'customizer-open' : ''}`}>
-        <Navbar onOpenCustomizer={openCustomizer} />
+      <div className="app-wrapper">
+        <Navbar onOpenJoinForm={() => openJoinForm()} />
         <main>
-          <Hero onOpenCustomizer={openCustomizer} />
-          <About onOpenCustomizer={openCustomizer} />
-          <Services onOpenCustomizer={openCustomizer} />
-          <Pricing onOpenCustomizer={openCustomizer} />
-          <Gallery onOpenCustomizer={openCustomizer} />
-          <HowItWorks onOpenCustomizer={openCustomizer} />
+          <Hero />
+          <About />
+          <Services />
+          <Pricing onOpenJoinForm={openJoinForm} />
+          <Gallery />
+          <HowItWorks />
+          <Contact />
         </main>
         <Footer />
       </div>
-
-      {/* Global Customizer Panel */}
-      <Customizer
-        sectionKey={activeCustomizer}
-        isOpen={!!activeCustomizer}
-        onClose={closeCustomizer}
+      <JoinFormModal
+        isOpen={joinFormOpen}
+        initialMembership={selectedMembership}
+        onClose={closeJoinForm}
       />
     </div>
   );

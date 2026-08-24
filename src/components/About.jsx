@@ -1,24 +1,18 @@
-import useManagedSection from '../utils/useManagedSection';
+import defaultData from '../data/forgewellData.json';
 import useScrollReveal from '../utils/useScrollReveal';
-import SectionToolbar from './SectionToolbar';
 import { ArrowRight } from './icons';
 
-export default function About({ onOpenCustomizer }) {
-  const [data] = useManagedSection('about');
+export default function About() {
+  const data = defaultData.about;
   const revealRef = useScrollReveal();
   const imageRef = useScrollReveal({ rootMargin: '0px 0px -60px 0px' });
 
   return (
-    <section id="about" className="relative py-28 lg:py-36 bg-bg-secondary border-y border-border/60">
-      {/* Sticky Section Toolbar (Bottom Right Corner) */}
-      <SectionToolbar
-        sectionKey="about"
-        onCustomize={() => onOpenCustomizer('about')}
-      />
-      <div className="max-w-content mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    <section id="about" className="relative py-12 lg:py-14 bg-bg-secondary border-y border-border/60">
+      <div className="max-w-content mx-auto px-4 sm:px-8 lg:px-12">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           {/* Image */}
-          <div ref={imageRef} className="reveal-left relative">
+          <div ref={imageRef} className="reveal-left relative m-0 sm:m-4 lg:m-8">
             <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-border/80 bg-white">
               <img
                 src={data.image}
@@ -45,7 +39,7 @@ export default function About({ onOpenCustomizer }) {
             </p>
 
             {/* Stats Row Cards */}
-            <div className="grid grid-cols-3 gap-4 sm:gap-6 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-10">
               {data.stats?.map((stat, i) => (
                 <div key={i} className="p-4 sm:p-5 rounded-2xl bg-bg-card border border-border shadow-xs text-center lg:text-left">
                   <div className="font-display font-extrabold text-2xl sm:text-3xl text-accent mb-1">

@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import useManagedSection from '../utils/useManagedSection';
+import defaultData from '../data/forgewellData.json';
 import { Menu, X } from './icons';
 
-export default function Navbar({ onOpenCustomizer }) {
-  const [data] = useManagedSection('navbar');
+export default function Navbar({ onOpenJoinForm }) {
+  const data = defaultData.navbar;
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const dialogRef = useRef(null);
@@ -42,16 +42,16 @@ export default function Navbar({ onOpenCustomizer }) {
         }`}
       >
         {/* Full-width container (edge-to-edge edge padding) */}
-        <div className="w-full px-6 sm:px-10 lg:px-16 flex items-center justify-between">
+        <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 flex items-center justify-between">
           
           {/* Logo Element (Far Left) */}
           <a href="#" className="flex items-center gap-3 sm:gap-3.5 group flex-shrink-0">
             {data.logoImage ? (
-              <div className="w-10 h-10 rounded-xl bg-white border border-border/80 p-1.5 shadow-xs flex items-center justify-center flex-shrink-0 group-hover:border-accent transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-white border border-border/80 shadow-xs flex items-center justify-center flex-shrink-0 group-hover:border-accent transition-colors">
                 <img
                   src={data.logoImage}
                   alt={data.logoText}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover rounded-xl"
                 />
               </div>
             ) : (
@@ -65,7 +65,7 @@ export default function Navbar({ onOpenCustomizer }) {
           </a>
 
           {/* Nav Links (Center / Spaced Out) */}
-          <div className="hidden md:flex items-center gap-8 lg:gap-12 nav-links">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-10 nav-links">
             {data.links?.map((link, i) => (
               <a
                 key={i}
@@ -79,17 +79,19 @@ export default function Navbar({ onOpenCustomizer }) {
 
           {/* CTA Button (Far Right) */}
           <div className="flex items-center gap-4 flex-shrink-0">
-            <a
-              href={data.ctaLink || '#pricing'}
+            <button
+              type="button"
+              onClick={() => onOpenJoinForm()}
+              aria-haspopup="dialog"
               className="hidden sm:inline-flex px-6 py-2.5 bg-accent text-white font-body font-bold text-xs sm:text-sm rounded-xl hover:bg-accent-hover shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap"
             >
               {data.ctaText || 'Join Now'}
-            </a>
+            </button>
 
             {/* Mobile Hamburger Menu Icon */}
             <button
               onClick={() => setMobileOpen(true)}
-              className="md:hidden p-2 text-ink-primary hover:text-accent transition-colors"
+              className="lg:hidden p-2 text-ink-primary hover:text-accent transition-colors"
               aria-label="Open menu"
             >
               <Menu size={26} />
@@ -141,13 +143,17 @@ export default function Navbar({ onOpenCustomizer }) {
 
           {/* Mobile CTA */}
           <div className="mt-auto pt-8">
-            <a
-              href={data.ctaLink || '#pricing'}
-              onClick={handleLinkClick}
+            <button
+              type="button"
+              onClick={() => {
+                handleLinkClick();
+                onOpenJoinForm();
+              }}
+              aria-haspopup="dialog"
               className="block w-full text-center px-6 py-4 bg-accent text-white font-body font-bold text-base sm:text-lg rounded-xl hover:bg-accent-hover transition-colors shadow-lg"
             >
               {data.ctaText || 'Join Now'}
-            </a>
+            </button>
           </div>
         </div>
       </dialog>

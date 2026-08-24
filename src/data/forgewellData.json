@@ -1,27 +1,17 @@
 {
-  "theme": {
-    "accent": "#3B7097",
-    "accentHover": "#2C5677",
-    "shadow": "#3B7097",
-    "bgPrimary": "#FAFAFA",
-    "bgSecondary": "#F0F4F8",
-    "bgCard": "#FFFFFF",
-    "inkPrimary": "#1E293B",
-    "inkSecondary": "#475569",
-    "border": "#E2E8F0"
-  },
   "navbar": {
     "logoText": "FORGEWELL",
-    "logoImage": "",
+    "logoImage": "/logo.jpg",
     "ctaText": "Join Now",
     "ctaLink": "#pricing",
     "links": [
+      { "label": "Home", "href": "#hero" },
       { "label": "About", "href": "#about" },
       { "label": "Services", "href": "#services" },
       { "label": "Membership", "href": "#pricing" },
-      { "label": "How It Works", "href": "#how-it-works" },
       { "label": "Gallery", "href": "#gallery" },
-      { "label": "Contact", "href": "#footer" }
+      { "label": "How It Works", "href": "#how-it-works" },
+      { "label": "Contact", "href": "#contact" }
     ]
   },
   "hero": {
@@ -201,7 +191,7 @@
       { "label": "Membership", "href": "#pricing" },
       { "label": "How It Works", "href": "#how-it-works" },
       { "label": "Gallery", "href": "#gallery" },
-      { "label": "Contact", "href": "#footer" }
+      { "label": "Contact", "href": "#contact" }
     ],
     "contact": {
       "address": "42 Arera Hills, Near DB Mall, Bhopal, MP 462011",

@@ -1,10 +1,9 @@
-import useManagedSection from '../utils/useManagedSection';
+import defaultData from '../data/forgewellData.json';
 import useScrollReveal from '../utils/useScrollReveal';
-import SectionToolbar from './SectionToolbar';
 import { ArrowRight, Check, Star } from './icons';
 
-export default function Hero({ onOpenCustomizer }) {
-  const [data] = useManagedSection('hero');
+export default function Hero() {
+  const data = defaultData.hero;
   const revealRef = useScrollReveal({ threshold: 0.1 });
 
   const heroImgSrc = data.backgroundImage || '/hero-bg.jpg';
@@ -12,15 +11,8 @@ export default function Hero({ onOpenCustomizer }) {
   return (
     <section
       id="hero"
-      className="relative min-h-[85vh] flex flex-col justify-center pt-28 pb-20 lg:py-32 bg-bg-primary"
+      className="relative min-h-[85vh] flex flex-col justify-center pt-28 pb-12 lg:pt-28 lg:pb-14 bg-bg-primary"
     >
-      {/* Top Right Customize Toolbar Button */}
-      <SectionToolbar
-        sectionKey="hero"
-        onCustomize={() => onOpenCustomizer('hero')}
-        label="Hero / Navbar / Theme"
-      />
-
       {/* Background Decorative Blur & Accent Shapes — own clipping wrapper */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#75BDE0]/20 rounded-full blur-3xl" />
@@ -32,7 +24,7 @@ export default function Hero({ onOpenCustomizer }) {
         <div ref={revealRef} className="reveal grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
           {/* Left Column (Content & Action) - 7 cols */}
-          <div className="lg:col-span-7 pb-11 space-y-6 sm:space-y-8">
+          <div className="lg:col-span-7 pb-0 lg:pb-11 space-y-6 sm:space-y-8">
             {/* Status Badge */}
             <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#F6E2BC]/70 border border-[#3B7097]/20 shadow-2xs">
               <span className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
@@ -97,7 +89,7 @@ export default function Hero({ onOpenCustomizer }) {
           {/* Right Column (Hero Visual & Floating Overlay Card) - 5 cols */}
           <div className="lg:col-span-5 relative mt-6 lg:mt-0">
             {/* Background Accent Frame */}
-            <div className="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-[#75BDE0]/30 via-[#F6E2BC]/50 to-[#A9D09E]/30 transform rotate-2 -z-10" />
+            {/* <div className="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-[#75BDE0]/30 via-[#F6E2BC]/50 to-[#A9D09E]/30 transform rotate-2 -z-10" /> */}
 
             {/* Main Image Frame */}
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-white bg-slate-100">
@@ -113,7 +105,7 @@ export default function Hero({ onOpenCustomizer }) {
             </div>
 
             {/* Floating Overlaid Stats Card */}
-            <div className="absolute -bottom-8 -left-4 sm:-left-6 right-4 sm:right-6 bg-white/95 backdrop-blur-md rounded-2xl p-5 sm:p-6 shadow-xl border border-border">
+            <div className="absolute -bottom-8 -left-4 sm:-left-6 right-4 sm:right-6 bg-white/95 backdrop-blur-md rounded-2xl p-5 sm:p-4 shadow-xl border border-border">
               <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center divide-x divide-border/60">
                 {data.stats?.map((stat, i) => (
                   <div key={i} className="px-1 sm:px-2">
