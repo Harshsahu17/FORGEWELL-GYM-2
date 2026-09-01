@@ -1,7 +1,7 @@
-import { useRef, useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 import defaultData from '../data/forgewellData.json';
 import useScrollReveal from '../utils/useScrollReveal';
-import { X } from './icons';
+import { ArrowRight, X } from './icons';
 
 export default function Gallery() {
   const data = defaultData.gallery;
@@ -18,80 +18,53 @@ export default function Gallery() {
     dialogRef.current?.showModal();
   }, []);
 
-  const closeLightbox = useCallback(() => {
-    dialogRef.current?.close();
-  }, []);
-  
-  // Close on click outside the image
-  const handleDialogClick = useCallback((e) => {
-    if (e.target === dialogRef.current) {
-      closeLightbox();
-    }
+  const closeLightbox = useCallback(() => dialogRef.current?.close(), []);
+  const handleDialogClick = useCallback((event) => {
+    if (event.target === dialogRef.current) closeLightbox();
   }, [closeLightbox]);
-  
+
   return (
-    <section id="gallery" className="relative py-12 lg:py-14 bg-bg-primary">
-      <div className="max-w-content mx-auto px-4 sm:px-8 lg:px-12">
-        {/* Header */}
-        <div ref={headerRef} className="reveal text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="inline-block font-mono text-xs font-bold tracking-[0.25em] text-accent mb-4 uppercase">
-            {data.eyebrow}
-          </span>
-          <h2 className="font-display font-bold text-section text-ink-primary mb-6">
-            {data.heading}
-          </h2>
-          <p className="font-body text-base sm:text-lg text-ink-secondary leading-relaxed font-medium">
-            {data.description}
-          </p>
+    <section id="gallery" className="bg-bg-primary py-10 sm:py-14 lg:py-20">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-12 xl:px-16">
+        <div ref={headerRef} className="reveal mb-8 flex flex-col justify-between gap-5 border-b border-border pb-7 sm:mb-10 sm:flex-row sm:items-end">
+          <div>
+            <span className="section-kicker">{data.eyebrow}</span>
+            <h2 className="mt-6 max-w-3xl font-display text-[clamp(2.8rem,5.2vw,5.4rem)] font-bold leading-[0.9] tracking-[-0.065em] text-ink-primary">{data.heading}</h2>
+          </div>
+          <div className="flex max-w-sm items-end gap-4">
+            <p className="font-body text-sm leading-relaxed text-ink-secondary sm:text-base">{data.description}</p>
+            <ArrowRight size={20} className="mb-0.5 shrink-0 text-signal" />
+          </div>
         </div>
 
-        {/* Image Grid */}
-        <div ref={gridRef} className="reveal grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 lg:gap-2">
-          {data.images?.map((img, i) => (
+        <div ref={gridRef} className="reveal grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+          {data.images?.map((image, index) => (
             <button
-              key={i}
-              onClick={() => openLightbox(img.src, img.alt)}
-              className={`group relative min-h-0 overflow-hidden rounded-3xl cursor-pointer shadow-xs hover:shadow-2xl border border-border/80 transition-all duration-300 stagger-${i + 1} ${
-                i === 0 ? 'md:col-span-2 md:row-span-2' : ''
-              }`}
+              key={image.src}
+              type="button"
+              onClick={() => openLightbox(image.src, image.alt)}
+              className={`group relative min-h-0 overflow-hidden rounded-2xl border border-ink-primary/10 bg-bg-secondary text-left shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-4 focus:ring-offset-bg-primary stagger-${index + 1} ${index === 0 ? 'col-span-2 row-span-2' : ''}`}
             >
-              <div className={`${i === 0 ? 'aspect-square md:aspect-auto md:h-full' : 'aspect-[4/3] md:aspect-auto md:h-full'}`}>
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="block w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
+              <div className={index === 0 ? 'aspect-square h-full' : 'aspect-[4/3] h-full'}>
+                <img src={image.src} alt={image.alt} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
-              {/* Light Hover Overlay */}
-              <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/30 transition-all duration-300 flex items-center justify-center">
-                <span className="font-body font-bold text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-slate-900/80 backdrop-blur-md px-4 py-2 rounded-xl">
-                  Expand Photo
-                </span>
+              <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-ink-primary/85 px-3 py-3 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:px-4">
+                <span className="font-mono text-[0.62rem] font-semibold uppercase tracking-[0.1em]">{image.number} / {data.viewLabel}</span>
+                <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
               </div>
             </button>
           ))}
         </div>
       </div>
 
-      {/* Lightbox Dialog */}
-      <dialog
-        ref={dialogRef}
-        className="lightbox"
-        onClick={handleDialogClick}
-      >
+      <dialog ref={dialogRef} className="lightbox" onClick={handleDialogClick}>
         <div className="relative">
-          <button
-            onClick={closeLightbox}
-            className="absolute -top-12 right-0 text-white hover:text-[#75BDE0] transition-colors"
-            aria-label="Close lightbox"
-          >
+          <button onClick={closeLightbox} className="absolute -right-1 -top-12 text-white transition-colors hover:text-highlight" aria-label={data.closeLabel}>
             <X size={30} />
           </button>
-          <img ref={imgRef} src="/gallery-1.jpg" alt="Expanded gallery view" />
+          <img ref={imgRef} src={data.images?.[0]?.src} alt={data.lightboxAlt} />
         </div>
       </dialog>
-
     </section>
   );
 }

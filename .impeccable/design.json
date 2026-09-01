@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-24T00:00:00.000Z",
+  "title": "Design System: ForgeWell",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "ForgeWell Blue", "canonical": "#2F6F95", "tonalRamp": ["#102633", "#173A4D", "#1C4B69", "#236181", "#2F6F95", "#5D98B5", "#9AC0D1", "#DCEBF0"] },
+      "signal": { "role": "secondary", "displayName": "Signal Coral", "canonical": "#D3533D", "tonalRamp": ["#3D1712", "#64251D", "#8D3327", "#B44534", "#D3533D", "#E38A79", "#F0B8AD", "#F9E1DC"] },
+      "highlight": { "role": "tertiary", "displayName": "Evidence Yellow", "canonical": "#ECC159", "tonalRamp": ["#46380C", "#76601A", "#A78629", "#C5A43C", "#ECC159", "#F3D88A", "#F8E9BA", "#FDF7E7"] },
+      "paper": { "role": "neutral", "displayName": "Warm Paper", "canonical": "#F7F4ED", "tonalRamp": ["#292722", "#575249", "#858077", "#B2ADA4", "#D7D2C8", "#F7F4ED", "#FBFAF7", "#FFFFFF"] },
+      "surface": { "role": "neutral", "displayName": "Cool Surface", "canonical": "#EBF1F2", "tonalRamp": ["#202D30", "#45575B", "#6D8185", "#A1B2B4", "#C6D4D5", "#EBF1F2", "#F5F8F8", "#FFFFFF"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Bricolage Grotesque", "purpose": "Editorial hero and section headlines." },
+      "body": { "displayName": "DM Sans", "purpose": "Readable descriptions, labels, and form copy." },
+      "label": { "displayName": "IBM Plex Mono", "purpose": "Indexes, navigation metadata, and operational details." }
+    },
+    "shadows": [
+      { "name": "image-depth", "value": "0 25px 50px -20px rgba(24, 35, 40, 0.22)", "purpose": "Major photography and hero depth." },
+      { "name": "interactive-lift", "value": "0 20px 35px -18px rgba(47, 111, 149, 0.24)", "purpose": "Hover elevation for actionable surfaces." },
+      { "name": "form-elevation", "value": "0 25px 60px -20px rgba(24, 35, 40, 0.30)", "purpose": "Membership dialog separation." }
+    ],
+    "motion": [
+      { "name": "ease-editorial", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Scroll reveals and deliberate lift transitions." },
+      { "name": "duration-standard", "value": "300ms", "purpose": "Hover, focus, and navigation state changes." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    { "name": "Primary Button", "kind": "button", "refersTo": "button-primary", "description": "Blue action with compact editorial padding.", "html": "<button class=\"ds-btn-primary\">START YOUR JOURNEY</button>", "css": ".ds-btn-primary { background:#2F6F95; color:#fff; padding:14px 24px; border-radius:8px; font:700 14px 'DM Sans',sans-serif; transition:transform 300ms,background 300ms,box-shadow 300ms; } .ds-btn-primary:hover { background:#1C4B69; transform:translateY(-2px); box-shadow:0 12px 24px -12px rgba(47,111,149,.5); } .ds-btn-primary:focus-visible { outline:2px solid #2F6F95; outline-offset:3px; }" },
+    { "name": "Field", "kind": "input", "refersTo": "input", "description": "Warm paper field with mineral stroke.", "html": "<input class=\"ds-field\" placeholder=\"Your name\" />", "css": ".ds-field { width:100%; background:#F7F4ED; color:#182328; border:1px solid #CDD5D3; border-radius:8px; padding:14px 16px; font:400 14px 'DM Sans',sans-serif; } .ds-field:focus { border-color:#2F6F95; outline:2px solid rgba(47,111,149,.18); outline-offset:1px; }" },
+    { "name": "Navigation", "kind": "nav", "refersTo": "navigation", "description": "Indexed mono rail with one blue action.", "html": "<nav class=\"ds-nav\"><a href=\"#services\">SERVICES</a><button>JOIN NOW</button></nav>", "css": ".ds-nav { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; background:rgba(247,244,237,.95); border-bottom:1px solid #CDD5D3; } .ds-nav a { color:#4C5B60; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; text-transform:uppercase; } .ds-nav a:hover { color:#182328; } .ds-nav button { background:#2F6F95; color:#fff; border:0; border-radius:8px; padding:10px 16px; font:700 13px 'DM Sans',sans-serif; }" },
+    { "name": "Plan Card", "kind": "card", "refersTo": "card", "description": "Quiet comparison surface with a blue selected state.", "html": "<article class=\"ds-plan\"><span>PLAN 01</span><h3>STARTER</h3><strong>₹1,499</strong></article>", "css": ".ds-plan { background:#FFFDF8; color:#182328; border:1px solid #CDD5D3; border-radius:12px; padding:32px; } .ds-plan:hover { border-color:rgba(47,111,149,.5); transform:translateY(-4px); box-shadow:0 20px 35px -18px rgba(47,111,149,.24); }" }
+  ],
+  "narrative": {
+    "northStar": "The Training Ledger",
+    "overview": "ForgeWell is expressed as a light editorial field journal for disciplined progress. Warm paper surfaces carry deep ink typography, structured rules, facility photography, and small signal marks that feel more like a coach's notation than generic fitness decoration.",
+    "keyCharacteristics": ["Warm paper canvas", "Oversized editorial type", "Image-led proof", "Rules and indexes"],
+    "rules": [
+      { "name": "The Signal Scarcity Rule", "body": "Coral and yellow are directional marks, not a second body palette.", "section": "colors" },
+      { "name": "The Two Voices Rule", "body": "Use the display face for meaning and the mono face for measurement.", "section": "typography" },
+      { "name": "The Flat-by-Default Rule", "body": "A surface earns a shadow through hierarchy or interaction.", "section": "elevation" }
+    ],
+    "dos": ["Do use real ForgeWell photography as proof.", "Do use rules, indexes, and measured metadata."],
+    "donts": ["Don't turn the page into a generic dark-gym theme.", "Don't rebuild every section as a repeated icon-plus-card grid."]
+  }
+}

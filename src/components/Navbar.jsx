@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import defaultData from '../data/forgewellData.json';
-import { Menu, X } from './icons';
+import { ArrowRight, Menu, X } from './icons';
 
 export default function Navbar({ onOpenJoinForm }) {
   const data = defaultData.navbar;
@@ -8,151 +8,118 @@ export default function Navbar({ onOpenJoinForm }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const dialogRef = useRef(null);
 
-  // Track scroll to add glass effect
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Handle mobile menu dialog
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
 
-    if (mobileOpen) {
-      dialog.showModal();
-    } else if (dialog.open) {
-      dialog.close();
-    }
+    if (mobileOpen && !dialog.open) dialog.showModal();
+    if (!mobileOpen && dialog.open) dialog.close();
   }, [mobileOpen]);
 
-  const handleLinkClick = () => {
-    setMobileOpen(false);
-  };
+  const closeMenu = () => setMobileOpen(false);
 
   return (
     <>
       <nav
         id="navbar"
-        className={`fixed top-0 left-0 w-full z-[900] transition-all duration-300 ${
+        className={`fixed left-0 top-0 z-[900] w-full border-b transition-all duration-300 ${
           scrolled
-            ? 'bg-bg-primary/95 backdrop-blur-md border-b border-border shadow-xs py-3'
-            : 'bg-transparent py-4 sm:py-5'
+            ? 'border-border bg-bg-primary/95 shadow-sm backdrop-blur-sm'
+            : 'border-transparent bg-bg-primary/80'
         }`}
       >
-        {/* Full-width container (edge-to-edge edge padding) */}
-        <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 flex items-center justify-between">
-          
-          {/* Logo Element (Far Left) */}
-          <a href="#" className="flex items-center gap-3 sm:gap-3.5 group flex-shrink-0">
-            {data.logoImage ? (
-              <div className="w-10 h-10 rounded-xl bg-white border border-border/80 shadow-xs flex items-center justify-center flex-shrink-0 group-hover:border-accent transition-colors">
-                <img
-                  src={data.logoImage}
-                  alt={data.logoText}
-                  className="w-full h-full object-cover rounded-xl"
-                />
-              </div>
-            ) : (
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-accent-hover text-white flex items-center justify-center font-display font-extrabold text-xl shadow-sm flex-shrink-0 group-hover:scale-105 transition-transform">
-                F
-              </div>
-            )}
-            <span className="font-display font-extrabold text-2xl tracking-tight text-accent group-hover:text-accent-hover transition-colors">
-              {data.logoText || 'FORGEWELL'}
+        <div className="mx-auto flex h-[4.75rem] w-full max-w-[1440px] items-center justify-between px-4 sm:px-8 lg:px-12 xl:px-16">
+          <a href="#hero" className="group flex shrink-0 items-center gap-3" aria-label={data.homeAriaLabel}>
+            <span className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl border border-ink-primary/15 bg-bg-card shadow-sm transition-transform duration-300 group-hover:-rotate-3">
+              <img src={data.logoImage} alt="" className="h-full w-full object-cover" />
+            </span>
+            <span className="font-display text-xl font-bold tracking-[-0.04em] text-ink-primary sm:text-2xl">
+              {data.logoText}
             </span>
           </a>
 
-          {/* Nav Links (Center / Spaced Out) */}
-          <div className="hidden lg:flex items-center gap-6 xl:gap-10 nav-links">
-            {data.links?.map((link, i) => (
+          <div className="hidden items-center gap-5 lg:flex xl:gap-8">
+            {data.links?.map((link) => (
               <a
-                key={i}
+                key={link.label}
                 href={link.href}
-                className="text-xs lg:text-sm font-body font-semibold text-ink-secondary hover:text-ink-primary transition-colors relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
+                className="group relative whitespace-nowrap py-2 font-mono text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-ink-secondary transition-colors hover:text-ink-primary"
               >
-                {link.label}
+                <span>{link.label}</span>
+                <span className="absolute bottom-0 left-0 h-px w-0 bg-signal transition-all duration-300 group-hover:w-full" />
+                <span className="sr-only">{data.navItemAriaPrefix} {link.number}</span>
               </a>
             ))}
           </div>
 
-          {/* CTA Button (Far Right) */}
-          <div className="flex items-center gap-4 flex-shrink-0">
+          <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={() => onOpenJoinForm()}
               aria-haspopup="dialog"
-              className="hidden sm:inline-flex px-6 py-2.5 bg-accent text-white font-body font-bold text-xs sm:text-sm rounded-xl hover:bg-accent-hover shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap"
+              className="group inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 font-body text-xs font-bold text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-hover hover:shadow-md sm:px-5 sm:text-sm"
             >
-              {data.ctaText || 'Join Now'}
+              {data.ctaText}
+              <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
             </button>
-
-            {/* Mobile Hamburger Menu Icon */}
             <button
+              type="button"
               onClick={() => setMobileOpen(true)}
-              className="lg:hidden p-2 text-ink-primary hover:text-accent transition-colors"
-              aria-label="Open menu"
+              className="rounded-lg p-2 text-ink-primary transition-colors hover:bg-bg-secondary hover:text-accent lg:hidden"
+              aria-label={data.openMenuLabel}
             >
-              <Menu size={26} />
+              <Menu size={24} />
             </button>
           </div>
-
         </div>
       </nav>
 
-      {/* Mobile Menu Dialog */}
-      <dialog
-        ref={dialogRef}
-        className="mobile-menu"
-        onClose={() => setMobileOpen(false)}
-      >
-        <div className="flex flex-col h-full p-6 sm:p-8">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-10">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-accent text-white flex items-center justify-center font-display font-bold text-lg">
-                F
-              </div>
-              <span className="font-display font-extrabold text-2xl tracking-tight text-accent">
-                {data.logoText || 'FORGEWELL'}
-              </span>
-            </div>
+      <dialog ref={dialogRef} className="mobile-menu" onClose={() => setMobileOpen(false)}>
+        <div className="flex min-h-full flex-col px-6 py-6 sm:px-10 sm:py-8">
+          <div className="flex items-center justify-between border-b border-border pb-6">
+            <span className="section-kicker">{data.mobileSectionLabel}</span>
             <button
-              onClick={() => setMobileOpen(false)}
-              className="p-2 text-ink-primary hover:text-accent transition-colors"
-              aria-label="Close menu"
+              type="button"
+              onClick={closeMenu}
+              className="rounded-lg p-2 text-ink-primary transition-colors hover:bg-bg-secondary hover:text-signal"
+              aria-label={data.closeMenuLabel}
             >
-              <X size={26} />
+              <X size={24} />
             </button>
           </div>
 
-          {/* Links */}
-          <div className="flex flex-col gap-6">
-            {data.links?.map((link, i) => (
+          <div className="flex flex-col gap-5 py-10">
+            {data.links?.map((link) => (
               <a
-                key={i}
+                key={link.label}
                 href={link.href}
-                onClick={handleLinkClick}
-                className="font-display font-bold text-2xl sm:text-3xl text-ink-primary hover:text-accent transition-colors"
+                onClick={closeMenu}
+                className="group flex items-baseline justify-between border-b border-border/70 pb-4 font-display text-3xl font-bold tracking-[-0.04em] text-ink-primary transition-colors hover:text-accent sm:text-4xl"
               >
-                {link.label}
+                <span>{link.label}</span>
+                <span className="font-mono text-xs font-medium tracking-[0.16em] text-signal">{link.number}</span>
               </a>
             ))}
           </div>
 
-          {/* Mobile CTA */}
-          <div className="mt-auto pt-8">
+          <div className="mt-auto border-t border-border pt-6">
             <button
               type="button"
               onClick={() => {
-                handleLinkClick();
+                closeMenu();
                 onOpenJoinForm();
               }}
               aria-haspopup="dialog"
-              className="block w-full text-center px-6 py-4 bg-accent text-white font-body font-bold text-base sm:text-lg rounded-xl hover:bg-accent-hover transition-colors shadow-lg"
+              className="flex w-full items-center justify-between rounded-lg bg-accent px-5 py-4 font-body text-base font-bold text-white transition-colors hover:bg-accent-hover"
             >
-              {data.ctaText || 'Join Now'}
+              {data.ctaText}
+              <ArrowRight size={18} />
             </button>
           </div>
         </div>

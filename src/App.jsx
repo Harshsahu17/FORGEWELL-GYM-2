@@ -3,12 +3,12 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
-import Pricing from './components/Pricing';
 import Gallery from './components/Gallery';
 import HowItWorks from './components/HowItWorks';
 import Contact from './components/Contact';
 import JoinFormModal from './components/JoinFormModal';
 import Footer from './components/Footer';
+import Membership from './components/Membership';
 
 export default function App() {
   const [joinFormOpen, setJoinFormOpen] = useState(false);
@@ -32,7 +32,7 @@ export default function App() {
           <Hero />
           <About />
           <Services />
-          <Pricing onOpenJoinForm={openJoinForm} />
+          <Membership onOpenJoinForm={openJoinForm} />
           <Gallery />
           <HowItWorks />
           <Contact />

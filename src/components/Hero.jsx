@@ -1,134 +1,72 @@
 import defaultData from '../data/forgewellData.json';
 import useScrollReveal from '../utils/useScrollReveal';
-import { ArrowRight, Check, Star } from './icons';
+import { ArrowRight } from './icons';
 
 export default function Hero() {
   const data = defaultData.hero;
   const revealRef = useScrollReveal({ threshold: 0.1 });
-
-  const heroImgSrc = data.backgroundImage || '/hero-bg.jpg';
+  const heroImgSrc = data.backgroundImage;
 
   return (
-    <section
-      id="hero"
-      className="relative min-h-[85vh] flex flex-col justify-center pt-28 pb-12 lg:pt-28 lg:pb-14 bg-bg-primary"
-    >
-      {/* Background Decorative Blur & Accent Shapes — own clipping wrapper */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#75BDE0]/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#A9D09E]/20 rounded-full blur-3xl" />
-      </div>
+    <section id="hero" className="relative overflow-hidden bg-bg-primary">
+      <div className="pointer-events-none absolute right-[-12rem] top-24 h-[30rem] w-[30rem] rounded-full bg-highlight/10 blur-3xl" aria-hidden="true" />
 
-      {/* Main Content Container */}
-      <div className="relative z-10 max-w-content mx-auto px-4 sm:px-8 lg:px-12 w-full">
-        <div ref={revealRef} className="reveal grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          
-          {/* Left Column (Content & Action) - 7 cols */}
-          <div className="lg:col-span-7 pb-0 lg:pb-11 space-y-6 sm:space-y-8">
-            {/* Status Badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#F6E2BC]/70 border border-[#3B7097]/20 shadow-2xs">
-              <span className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
-              <span className="font-mono text-xs font-bold tracking-wider text-bg-accent uppercase">
-                {data.eyebrow || 'BHOPAL\'S STRENGTH & CONDITIONING STUDIO'}
-              </span>
-            </div>
+      <div className="relative z-10 mx-auto grid min-h-[calc(100svh-4.75rem)] max-w-content gap-10 px-4 pb-16 pt-24 sm:px-8 lg:grid-cols-[1.2fr_0.9fr] lg:gap-14 lg:px-12 lg:pb-20 lg:pt-24">
+        <div ref={revealRef} className="reveal flex flex-col justify-start">
+          <p className="flex items-center gap-3 font-mono text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-signal">
+            <span className="h-px w-10 bg-signal" aria-hidden="true" />
+            {data.eyebrow}
+          </p>
 
-            {/* Headline */}
-            <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-ink-primary tracking-tight leading-[1.08]">
-              <span className="block mb-1">{data.headlineLine1 || 'FORGE YOUR'}</span>
-              <span className="inline-block text-bg-accent underline decoration-[#75BDE0]/60 decoration-wavy decoration-2 underline-offset-8">
-                {data.headlineLine2 || 'STRONGEST SELF'}
-              </span>
-            </h1>
+          <h1 className="mt-10 max-w-[700px] font-display text-[clamp(4.5rem,8.2vw,7.25rem)] font-bold uppercase leading-[0.82] tracking-[-0.075em] text-ink-primary sm:mt-12 lg:mt-10">
+            <span className='block'>{data.headlineLine1}</span>
+            <span className='block text-accent'>{data.headlineLine2}</span>
+          </h1>
 
-            {/* Description */}
-            <p className="font-body text-base sm:text-lg text-ink-secondary max-w-xl leading-relaxed font-medium">
+          <div className="mt-8 max-w-xl sm:mt-5">
+            <p className="font-body text-base leading-relaxed text-ink-secondary sm:text-lg">
               {data.description}
             </p>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-4 pt-2">
+            <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
               <a
-                href={data.ctaPrimary?.link || '#pricing'}
-                className="inline-flex items-center gap-3 px-7 py-3.5 sm:px-8 sm:py-4 bg-accent text-white font-body font-bold text-sm sm:text-base rounded-2xl hover:bg-accent-hover transition-all duration-200 shadow-md shadow-accent/20 hover:shadow-lg hover:-translate-y-0.5"
+                href={data.ctaPrimary.link}
+                className="group inline-flex items-center gap-3 rounded-lg bg-accent px-5 py-3.5 font-body text-sm font-bold text-white transition-colors duration-200 hover:bg-accent-hover sm:px-6"
               >
-                {data.ctaPrimary?.text || 'Start Your Journey'}
-                <ArrowRight size={18} />
+                {data.ctaPrimary.text}
+                <ArrowRight size={17} className="transition-transform duration-200 group-hover:translate-x-1" />
               </a>
               <a
-                href={data.ctaSecondary?.link || '#gallery'}
-                className="inline-flex items-center gap-2 px-7 py-3.5 sm:px-8 sm:py-4 bg-[#F6E2BC]/60 border border-[#3B7097]/20 text-accent font-body font-bold text-sm sm:text-base rounded-2xl hover:bg-[#F6E2BC] transition-all duration-200 shadow-2xs hover:shadow-xs"
+                href={data.ctaSecondary.link}
+                className="group inline-flex items-center gap-2 rounded-lg border border-ink-primary/20 bg-bg-card px-5 py-3.5 font-body text-sm font-bold text-ink-primary transition-colors duration-200 hover:border-accent hover:text-accent sm:px-6"
               >
-                {data.ctaSecondary?.text || 'Take a Tour'}
+                {data.ctaSecondary.text}
+                <ArrowRight size={17} className="transition-transform duration-200 group-hover:translate-x-1" />
               </a>
-            </div>
-
-            {/* Feature Pills Tag Row */}
-            <div className="flex flex-wrap items-center gap-5 pt-2 text-xs font-body font-bold text-ink-secondary">
-              <div className="flex items-center gap-2">
-                <div className="w-5 h-5 rounded-full bg-[#A9D09E]/50 text-accent-hover flex items-center justify-center">
-                  <Check size={12} />
-                </div>
-                <span>Certified Coaches</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-5 h-5 rounded-full bg-[#A9D09E]/50 text-accent-hover flex items-center justify-center">
-                  <Check size={12} />
-                </div>
-                <span>State-of-the-Art Equipment</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-5 h-5 rounded-full bg-[#A9D09E]/50 text-accent-hover flex items-center justify-center">
-                  <Check size={12} />
-                </div>
-                <span>Recovery Lounge</span>
-              </div>
             </div>
           </div>
-
-          {/* Right Column (Hero Visual & Floating Overlay Card) - 5 cols */}
-          <div className="lg:col-span-5 relative mt-6 lg:mt-0">
-            {/* Background Accent Frame */}
-            {/* <div className="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-[#75BDE0]/30 via-[#F6E2BC]/50 to-[#A9D09E]/30 transform rotate-2 -z-10" /> */}
-
-            {/* Main Image Frame */}
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-white bg-slate-100">
-              <img
-                src={heroImgSrc}
-                alt="ForgeWell Hero"
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.target.src = '/hero-bg.jpg';
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1E293B]/60 via-transparent to-transparent pointer-events-none" />
-            </div>
-
-            {/* Floating Overlaid Stats Card */}
-            <div className="absolute -bottom-8 -left-4 sm:-left-6 right-4 sm:right-6 bg-white/95 backdrop-blur-md rounded-2xl p-5 sm:p-4 shadow-xl border border-border">
-              <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center divide-x divide-border/60">
-                {data.stats?.map((stat, i) => (
-                  <div key={i} className="px-1 sm:px-2">
-                    <div className="font-display font-extrabold text-xl sm:text-3xl text-accent">
-                      {stat.value}
-                    </div>
-                    <div className="font-body text-[10px] sm:text-[11px] font-bold text-ink-secondary uppercase tracking-wider mt-0.5">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
+          <div className="mt-4 grid grid-cols-3 border-t border-border pt-4">
+            {data.stats?.map((stat) => (
+              <div key={stat.label} className="border-r border-border px-3 first:pl-0 last:border-r-0 sm:px-4">
+                <p className="font-display text-2xl font-bold tracking-[-0.04em] text-ink-primary sm:text-3xl">{stat.value}</p>
+                <p className="mt-1 font-mono text-[0.62rem] font-semibold uppercase leading-relaxed tracking-[0.1em] text-ink-secondary">{stat.label}</p>
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
 
-            {/* Floating Rating Badge */}
-            <div className="absolute -top-4 -right-2 sm:-right-4 bg-white rounded-2xl p-3 shadow-lg border border-border flex items-center gap-2.5 z-10">
-              <div className="w-9 h-9 rounded-xl bg-[#F6E2BC] text-accent flex items-center justify-center">
-                <Star size={20} />
-              </div>
-              <div>
-                <div className="font-display font-bold text-xs sm:text-sm text-ink-primary">4.9 / 5.0</div>
-                <div className="font-body text-[10px] font-semibold text-ink-secondary">Bhopal's Top Gym</div>
-              </div>
+        <div className="relative self-start">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-ink-primary/15 bg-ink-primary shadow-xl">
+            <img
+              src={heroImgSrc}
+              alt={data.imageAlt}
+              className="h-full w-full object-cover object-center"
+              onError={(event) => {
+                event.currentTarget.src = data.fallbackImage;
+              }}
+            />
+            <div className="absolute inset-x-0 top-0 flex items-center justify-between bg-ink-primary/95 px-4 py-3 font-mono text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-white">
+              <span>{data.fieldLabel}</span>
+              <span className="text-highlight">{data.locationLabel}</span>
             </div>
           </div>
 

@@ -8,62 +8,46 @@ export default function About() {
   const imageRef = useScrollReveal({ rootMargin: '0px 0px -60px 0px' });
 
   return (
-    <section id="about" className="relative py-12 lg:py-14 bg-bg-secondary border-y border-border/60">
-      <div className="max-w-content mx-auto px-4 sm:px-8 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-          {/* Image */}
-          <div ref={imageRef} className="reveal-left relative m-0 sm:m-4 lg:m-8">
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-border/80 bg-white">
-              <img
-                src={data.image}
-                alt="About ForgeWell"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              />
+    <section id="about" className="border-y border-border bg-bg-secondary py-10 sm:py-14 lg:py-20">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-12 xl:px-16">
+        <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <div ref={imageRef} className="reveal-left relative">
+            <div className="overflow-hidden rounded-[1.5rem] border border-ink-primary/15 bg-bg-card shadow-xl">
+              <div className="aspect-[4/4]">
+                <img src={data.image} alt={data.imageAlt} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+              </div>
             </div>
-            {/* Decorative subtle accent frame */}
-            <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-accent/25 rounded-3xl -z-10 hidden sm:block" />
+            <div className="absolute -bottom-5 -right-4 bg-signal px-4 py-3 text-white shadow-lg sm:-right-6 sm:px-5 sm:py-4">
+              <div className="font-display text-2xl font-bold tracking-[-0.05em]">{data.facilityBadge.value}</div>
+              <div className="font-mono text-[0.62rem] font-semibold uppercase tracking-[0.12em]">{data.facilityBadge.label}</div>
+            </div>
           </div>
 
-          {/* Content */}
           <div ref={revealRef} className="reveal">
-            <span className="inline-block font-mono text-xs font-bold tracking-[0.25em] text-accent mb-4 uppercase">
-              {data.eyebrow}
-            </span>
-
-            <h2 className="font-display font-bold text-section text-ink-primary mb-6">
+            <span className="section-kicker">{data.eyebrow}</span>
+            <h2 className="mt-6 max-w-2xl font-display text-[clamp(2.8rem,5.2vw,5.5rem)] font-bold leading-[0.9] tracking-[-0.065em] text-ink-primary">
               {data.heading}
             </h2>
-
-            <p className="font-body text-base sm:text-lg text-ink-secondary leading-relaxed mb-10 font-medium">
+            <p className="mt-7 max-w-2xl font-body text-base leading-relaxed text-ink-secondary sm:text-lg">
               {data.description}
             </p>
 
-            {/* Stats Row Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-10">
-              {data.stats?.map((stat, i) => (
-                <div key={i} className="p-4 sm:p-5 rounded-2xl bg-bg-card border border-border shadow-xs text-center lg:text-left">
-                  <div className="font-display font-extrabold text-2xl sm:text-3xl text-accent mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="font-body text-xs font-semibold text-ink-secondary tracking-wide uppercase">
-                    {stat.label}
-                  </div>
+            <div className="mt-10 grid grid-cols-3 border-y border-border py-5">
+              {data.stats?.map((stat) => (
+                <div key={stat.label} className="border-r border-border px-3 first:pl-0 last:border-0 last:pr-0 sm:px-5">
+                  <div className="font-display text-2xl font-bold tracking-[-0.05em] text-accent sm:text-3xl">{stat.value}</div>
+                  <div className="mt-1 max-w-[9rem] font-mono text-[0.62rem] font-semibold uppercase leading-tight tracking-[0.1em] text-ink-secondary">{stat.label}</div>
                 </div>
               ))}
             </div>
 
-            {/* CTA */}
-            <a
-              href={data.ctaLink}
-              className="inline-flex items-center gap-3 font-body font-bold text-base text-accent hover:text-accent-hover transition-colors group py-2"
-            >
+            <a href={data.ctaLink} className="group mt-8 inline-flex items-center gap-3 font-body text-sm font-bold text-ink-primary transition-colors hover:text-accent">
               {data.ctaText}
-              <ArrowRight size={20} className="group-hover:translate-x-1.5 transition-transform" />
+              <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1.5" />
             </a>
           </div>
         </div>
       </div>
-
     </section>
   );
 }

@@ -1,6 +1,6 @@
 import defaultData from '../data/forgewellData.json';
 import useScrollReveal from '../utils/useScrollReveal';
-import { getIcon, ArrowRight } from './icons';
+import { ArrowRight, getIcon } from './icons';
 
 export default function Services() {
   const data = defaultData.services;
@@ -8,61 +8,42 @@ export default function Services() {
   const gridRef = useScrollReveal({ threshold: 0.05 });
 
   return (
-    <section id="services" className="relative py-12 lg:py-14 bg-bg-primary">
-      <div className="max-w-content mx-auto px-4 sm:px-8 lg:px-12">
-        {/* Header */}
-        <div ref={headerRef} className="reveal text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="inline-block font-mono text-xs font-bold tracking-[0.25em] text-accent mb-4 uppercase">
-            {data.eyebrow}
-          </span>
-          <h2 className="font-display font-bold text-section text-ink-primary mb-6">
-            {data.heading}
-          </h2>
-          <p className="font-body text-base sm:text-lg text-ink-secondary leading-relaxed font-medium">
-            {data.description}
-          </p>
+    <section id="services" className="bg-bg-primary py-10 sm:py-14 lg:py-20">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-12 xl:px-16">
+        <div ref={headerRef} className="reveal grid gap-6 border-b border-border pb-7 lg:grid-cols-[0.7fr_1.3fr] lg:items-end lg:pb-10">
+          <div>
+            <span className="section-kicker">{data.eyebrow}</span>
+            <div className="mt-5 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-ink-secondary">{data.metaText}</div>
+          </div>
+          <div>
+            <h2 className="max-w-4xl font-display text-[clamp(2.8rem,5.2vw,5.4rem)] font-bold leading-[0.9] tracking-[-0.065em] text-ink-primary">{data.heading}</h2>
+            <p className="mt-5 max-w-2xl font-body text-base leading-relaxed text-ink-secondary sm:text-lg">{data.description}</p>
+          </div>
         </div>
 
-        {/* Services Grid (Redesigned Cards) */}
-        <div ref={gridRef} className="reveal services-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {data.items?.map((item, i) => {
+        <div ref={gridRef} className="reveal grid gap-x-10 md:grid-cols-2">
+          {data.items?.map((item, index) => {
             const IconComp = getIcon(item.icon);
             return (
-              <div
-                key={i}
-                className={`group relative p-7 sm:p-10 rounded-3xl bg-bg-card border border-border/80 shadow-xs hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden stagger-${i + 1}`}
-              >
-                {/* Top Accent Stripe on Hover */}
-                <div className="absolute top-0 left-0 right-0 h-1.5 bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                <div>
-                  {/* Icon Badge */}
-                  <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-8 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300 shadow-2xs">
-                    {IconComp ? <IconComp size={28} /> : <span className="text-xl">●</span>}
+              <article key={item.title} className={`group border-b border-border py-7 sm:py-9 stagger-${index + 1}`}>
+                <div className="flex items-start gap-4 sm:gap-6">
+                  <span className="font-mono text-xs font-semibold tracking-[0.1em] text-signal">{item.number}</span>
+                  <div className="flex min-w-0 flex-1 items-start justify-between gap-4">
+                    <div>
+                      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-bg-secondary text-accent transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-white">
+                        {IconComp ? <IconComp size={21} /> : null}
+                      </div>
+                      <h3 className="font-display text-2xl font-bold tracking-[-0.04em] text-ink-primary transition-colors duration-300 group-hover:text-accent sm:text-3xl">{item.title}</h3>
+                      <p className="mt-3 max-w-md font-body text-sm leading-relaxed text-ink-secondary sm:text-base">{item.description}</p>
+                    </div>
+                    <ArrowRight size={19} className="mt-1 shrink-0 text-border transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-signal" />
                   </div>
-
-                  {/* Title */}
-                  <h3 className="font-display font-bold text-2xl text-ink-primary mb-4 group-hover:text-accent transition-colors">
-                    {item.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="font-body text-sm sm:text-base text-ink-secondary leading-relaxed font-normal">
-                    {item.description}
-                  </p>
                 </div>
-
-                {/* Footer link cue */}
-                <div className="mt-8 pt-6 border-t border-border/60 flex items-center gap-2 text-xs font-body font-bold text-accent">
-                  <span><a href="#pricing">Explore Program</a></span>
-                  <ArrowRight size={16} className="group-hover:translate-x-1.5 transition-transform" />
-                </div>
-              </div>
+              </article>
             );
           })}
         </div>
       </div>
-
     </section>
   );
 }

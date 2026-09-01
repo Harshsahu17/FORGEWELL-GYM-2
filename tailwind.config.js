@@ -8,6 +8,8 @@ export default {
           DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
           hover:   'rgb(var(--accent-hover) / <alpha-value>)',
         },
+        signal: 'rgb(var(--signal) / <alpha-value>)',
+        highlight: 'rgb(var(--highlight) / <alpha-value>)',
         shadow: 'rgb(var(--shadow) / <alpha-value>)',
         bg: {
           primary:   'rgb(var(--bg-primary) / <alpha-value>)',

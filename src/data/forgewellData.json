@@ -2,16 +2,21 @@
   "navbar": {
     "logoText": "FORGEWELL",
     "logoImage": "/logo.jpg",
+    "homeAriaLabel": "ForgeWell home",
+    "openMenuLabel": "Open menu",
+    "closeMenuLabel": "Close menu",
+    "mobileSectionLabel": "Navigation",
+    "navItemAriaPrefix": "Navigation item",
     "ctaText": "Join Now",
     "ctaLink": "#pricing",
     "links": [
-      { "label": "Home", "href": "#hero" },
-      { "label": "About", "href": "#about" },
-      { "label": "Services", "href": "#services" },
-      { "label": "Membership", "href": "#pricing" },
-      { "label": "Gallery", "href": "#gallery" },
-      { "label": "How It Works", "href": "#how-it-works" },
-      { "label": "Contact", "href": "#contact" }
+      { "number": "01", "label": "Home", "href": "#hero" },
+      { "number": "02", "label": "About", "href": "#about" },
+      { "number": "03", "label": "Services", "href": "#services" },
+      { "number": "04", "label": "Membership", "href": "#membership" },
+      { "number": "05", "label": "Gallery", "href": "#gallery" },
+      { "number": "06", "label": "How It Works", "href": "#how-it-works" },
+      { "number": "07", "label": "Contact", "href": "#contact" }
     ]
   },
   "hero": {
@@ -19,9 +24,13 @@
     "headlineLine1": "FORGE YOUR",
     "headlineLine2": "STRONGEST SELF",
     "description": "Bhopal's most elite training facility. World-class equipment, expert coaches, and a community that pushes you beyond limits — every single day.",
-    "ctaPrimary": { "text": "Start Your Journey", "link": "#pricing" },
+    "ctaPrimary": { "text": "Start Your Journey", "link": "#services" },
     "ctaSecondary": { "text": "Take a Tour", "link": "#gallery" },
     "backgroundImage": "/hero-bg.jpg",
+    "fallbackImage": "/gallery-1.jpg",
+    "imageAlt": "ForgeWell training floor",
+    "fieldLabel": "ForgeWell / Field 01",
+    "locationLabel": "Bhopal, MP",
     "stats": [
       { "value": "12+", "label": "Years of Excellence" },
       { "value": "2.4K", "label": "Active Members" },
@@ -33,6 +42,8 @@
     "heading": "Built for Those Who Demand More",
     "description": "ForgeWell was founded in 2012 with a singular vision — to build Bhopal's most uncompromising fitness destination. We don't believe in shortcuts. Every square foot of our 15,000 sq.ft facility is engineered for results. From competition-grade lifting platforms to recovery suites, every detail serves your transformation.",
     "image": "/about.jpg",
+    "imageAlt": "Inside ForgeWell gym",
+    "facilityBadge": { "value": "15K", "label": "Sq. ft. facility" },
     "stats": [
       { "value": "15K", "label": "Sq. Ft. Facility" },
       { "value": "200+", "label": "Equipment Pieces" },
@@ -43,47 +54,58 @@
   },
   "services": {
     "eyebrow": "WHAT WE OFFER",
+    "metaText": "06 programs / 01 purpose",
     "heading": "Training Programs Designed for Results",
     "description": "Every program is built on science, delivered with passion, and tailored to your body. No cookie-cutter plans — only precision coaching.",
     "items": [
       {
+        "number": "01",
         "icon": "Dumbbell",
         "title": "Personal Training",
         "description": "One-on-one sessions with certified trainers who build programs around your body, goals, and schedule."
       },
       {
+        "number": "02",
         "icon": "Flame",
         "title": "Weight Training",
         "description": "Competition-grade platforms, Olympic bars, and a full free-weight floor for serious lifters."
       },
       {
+        "number": "03",
         "icon": "Heart",
         "title": "Cardio Zone",
         "description": "State-of-the-art treadmills, bikes, rowers, and assault runners with integrated heart-rate tracking."
       },
       {
+        "number": "04",
         "icon": "Users",
         "title": "Group Classes",
         "description": "High-energy HIIT, spinning, yoga, and functional training classes led by specialist instructors."
       },
       {
+        "number": "05",
         "icon": "Timer",
         "title": "Recovery Suite",
         "description": "Infrared sauna, cold plunge, foam rolling stations, and sports massage — recover like a pro."
       },
       {
+        "number": "06",
         "icon": "Salad",
         "title": "Nutrition Coaching",
         "description": "Personalized meal plans, macro tracking guidance, and supplement advice from certified nutritionists."
       }
     ]
   },
-  "pricing": {
+  "membership": {
     "eyebrow": "MEMBERSHIP PLANS",
+    "metaText": "Simple / flexible / transparent",
+    "planLabel": "Plan",
+    "popularLabel": "Most popular",
     "heading": "Invest in Your Transformation",
     "description": "Transparent pricing. No hidden fees. Cancel anytime.",
     "tiers": [
       {
+        "number": "01",
         "name": "Starter",
         "price": "₹1,499",
         "period": "/month",
@@ -100,6 +122,7 @@
         "recommended": false
       },
       {
+        "number": "02",
         "name": "Pro",
         "price": "₹2,999",
         "period": "/month",
@@ -117,6 +140,7 @@
         "recommended": true
       },
       {
+        "number": "03",
         "name": "Elite",
         "price": "₹4,999",
         "period": "/month",
@@ -138,19 +162,23 @@
   },
   "gallery": {
     "eyebrow": "OUR SPACE",
+    "viewLabel": "View",
+    "closeLabel": "Close lightbox",
+    "lightboxAlt": "Expanded gallery view",
     "heading": "See Where Transformation Happens",
     "description": "A glimpse inside Bhopal's most premium fitness facility.",
     "images": [
-      { "src": "/gallery-1.jpg", "alt": "Main training floor with free weights" },
-      { "src": "/gallery-2.jpg", "alt": "Group fitness class in action" },
-      { "src": "/gallery-3.jpg", "alt": "Modern cardio zone" },
-      { "src": "/gallery-4.jpg", "alt": "Recovery and stretching area" },
-      { "src": "/gallery-5.jpg", "alt": "Personal training session" },
-      { "src": "/gallery-6.jpg", "alt": "Premium locker room facilities" }
+      { "number": "01", "src": "/gallery-1.jpg", "alt": "Main training floor with free weights" },
+      { "number": "02", "src": "/gallery-2.jpg", "alt": "Group fitness class in action" },
+      { "number": "03", "src": "/gallery-3.jpg", "alt": "Modern cardio zone" },
+      { "number": "04", "src": "/gallery-4.jpg", "alt": "Recovery and stretching area" },
+      { "number": "05", "src": "/gallery-5.jpg", "alt": "Personal training session" },
+      { "number": "06", "src": "/gallery-6.jpg", "alt": "Premium locker room facilities" }
     ]
   },
   "howItWorks": {
     "eyebrow": "YOUR JOURNEY",
+    "metaText": "No guesswork / just a plan",
     "heading": "Four Steps to a Stronger You",
     "description": "Getting started is simple. We've designed a seamless onboarding experience.",
     "steps": [
@@ -176,8 +204,29 @@
       }
     ]
   },
+  "contactSection": {
+    "eyebrow": "Get in touch",
+    "heading": "Ready to train with purpose?",
+    "description": "Have a question or need more information? Send us a message and our team will get back to you.",
+    "successHeading": "Message received",
+    "successDescription": "Thanks for reaching out. Your message has been submitted successfully.",
+    "formStep": "02 / 02",
+    "formEyebrow": "General contact",
+    "formHeading": "Start a conversation",
+    "submitText": "Send Message",
+    "contact": {
+      "address": "42 Arera Hills, Near DB Mall, Bhopal, MP 462011",
+      "phone": "+91 755 400 1234",
+      "email": "hello@forgewell.in"
+    }
+  },
   "footer": {
     "logoText": "FORGEWELL",
+    "kicker": "ForgeWell / 2012—now",
+    "backToTopText": "Back to top",
+    "exploreHeading": "Explore",
+    "findUsHeading": "Find us",
+    "hoursHeading": "Hours",
     "description": "Bhopal's premier fitness destination. Forging stronger bodies and unbreakable minds since 2012.",
     "socialLinks": [
       { "platform": "Instagram", "url": "https://instagram.com/forgewell" },
@@ -208,5 +257,33 @@
       { "label": "Privacy Policy", "href": "#" },
       { "label": "Terms of Service", "href": "#" }
     ]
+  },
+  "joinForm": {
+    "eyebrow": "MEMBERSHIP ENQUIRY",
+    "headingLine1": "JOIN",
+    "headingLine2": "FORGEWELL",
+    "description": "Tell us how you want to train and we will help you choose a membership that fits your goals.",
+    "benefits": [
+      "Certified coaches guiding every session",
+      "Personalized programming that adapts to you",
+      "Flexible plans for every stage of training",
+      "Progress tracked and reviewed monthly"
+    ],
+    "stats": [
+      { "value": "12+", "label": "Years of Excellence" },
+      { "value": "2.4K", "label": "Active Members" },
+      { "value": "50+", "label": "Expert Trainers" }
+    ],
+    "formEyebrow": "Member intake / 01",
+    "formHeading": "Tell us about you",
+    "formDescription": "We will use these details to prepare your membership enquiry.",
+    "closeLabel": "Close membership enquiry form",
+    "genderOptions": ["Male", "Female", "Other"],
+    "servicesHint": "Choose as many as apply.",
+    "servicesError": "Please select at least one service.",
+    "submitText": "Submit Membership Enquiry",
+    "successHeading": "Membership enquiry received",
+    "successDescription": "Thanks for sharing your details. Your membership preferences have been submitted successfully.",
+    "closeButtonText": "Close"
   }
 }
